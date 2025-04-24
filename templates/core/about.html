@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Biz haqimizda - AKE.FX Trading Academy{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <div class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Biz haqimizda</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-white">Bosh sahifa</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Biz haqimizda</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="founder-image">
+                        <img src="{% static 'images/founder.jpg' %}" alt="Shokh.AKE" class="img-fluid rounded">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="about-content">
+                        <h2>AKE.FX Trading Academy</h2>
+                        <p class="lead">Professional treyderlar tayyorlash akademiyasi</p>
+                        <p>AKE.FX Trading Academy 2020-yilda professional trader Shokh.AKE tomonidan tashkil etilgan. Bizning maqsadimiz - talabalarni professional darajada trading qilishga o'rgatish va ularga moliyaviy erkinlikka erishishda yordam berish.</p>
+                        <p>Bizning o'quv markazimiz talabalarni zamonaviy trading strategiyalari, texnik tahlil, fundamental tahlil, risk menejmenti va psixologik tayyorgarlik kabi muhim mavzular bo'yicha ta'lim beradi.</p>
+                        <p>Biz har bir talabaga individual yondashamiz va ularning muvaffaqiyatiga ishonchimiz komil. Bizning kurslarimiz amaliy bo'lib, real bozor sharoitlarida sinovdan o'tgan strategiyalarga asoslangan.</p>
+                        
+                        <div class="founder-info mt-4">
+                            <h4>Asoschi haqida</h4>
+                            <p>Shokh.AKE - 6 yildan ortiq tajribaga ega professional trader va ta'lim mutaxassisi. U bir necha million dollarga teng portfelni boshqargan va o'z strategiyalarini rivojlantirishda katta muvaffaqiyatga erishgan.</p>
+                            <p>U o'z tajribasini bo'lishish va boshqalarga moliyaviy mustaqillikka erishishda yordam berish maqsadida AKE.FX Trading Academy ni tashkil etgan.</p>
+                            
+                            <div class="social-links mt-3">
+                                <a href="https://instagram.com/ake_fx" class="me-2" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+                                <a href="https://t.me/ake_fx" class="me-2" target="_blank"><i class="fab fa-telegram fa-lg"></i></a>
+                                <a href="https://youtube.com/ake_fx" class="me-2" target="_blank"><i class="fab fa-youtube fa-lg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Bizning maqsadimiz</h2>
+                <p class="lead">Trading dunyosida muvaffaqiyatga erishishingizda yordam berish</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Professional ta'lim</h4>
+                            <p>Eng zamonaviy trading metodlarini o'rgatish va professional treyderlar tayyorlash.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h4>Qo'llab-quvvatlash</h4>
+                            <p>Trading yo'liga yangi qadam qo'ygan va tajribali treyderlarga muntazam qo'llab-quvvatlash.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>Moliyaviy mustaqillik</h4>
+                            <p>Har bir o'quvchiga moliyaviy mustaqillikka erishishda yordam berish.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="display-4 fw-bold text-primary">5,000+</div>
+                    <p class="lead">O'quvchilar</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="display-4 fw-bold text-primary">15+</div>
+                    <p class="lead">Kurslar</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="display-4 fw-bold text-primary">95%</div>
+                    <p class="lead">Muvaffaqiyatli bitiruvchilar</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="display-4 fw-bold text-primary">4</div>
+                    <p class="lead">Yillik tajriba</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Bizning jamoa</h2>
+                <p class="lead">AKE.FX Trading Academy professional jamoasi</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="{% static 'images/team-1.jpg' %}" class="card-img-top" alt="Team Member">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-1">Shokh.AKE</h5>
+                            <p class="text-muted">Asoschi va Bosh trener</p>
+                            <p class="small">10+ yillik trading tajribasi bilan professional trader va ta'lim mutaxassisi.</p>
+                            <div class="social-links">
+                                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="{% static 'images/team-2.jpg' %}" class="card-img-top" alt="Team Member">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-1">Aziza Sobirova</h5>
+                            <p class="text-muted">Forex trader va mentor</p>
+                            <p class="small">5+ yillik Forex tajribasi bilan professional trader va talabalar mentori.</p>
+                            <div class="social-links">
+                                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="{% static 'images/team-3.jpg' %}" class="card-img-top" alt="Team Member">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-1">Davron Qodirov</h5>
+                            <p class="text-muted">Kripto trader va analitik</p>
+                            <p class="small">Kripto valyuta bozorida 7+ yillik tajribaga ega professional trader.</p>
+                            <div class="social-links">
+                                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="{% static 'images/team-4.jpg' %}" class="card-img-top" alt="Team Member">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-1">Nilufar Raxmonova</h5>
+                            <p class="text-muted">Ta'lim menejeri</p>
+                            <p class="small">O'quv jarayonini tashkil etish va talabalar bilan ishlash bo'yicha mutaxassis.</p>
+                            <div class="social-links">
+                                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Ko'p so'raladigan savollar</h2>
+                <p class="lead">AKE.FX Trading Academy haqida eng ko'p beriladigan savollar</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Kurslarga qanday yozilishim mumkin?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Kurslarimizga yozilish uchun, saytimizda ro'yxatdan o'ting, sizni qiziqtirgan kursni tanlang va "Ro'yxatdan o'tish" tugmasini bosing. Shundan so'ng, to'lov ma'lumotlarini kiritib, kursni sotib olishingiz mumkin.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Kurslarga kirish muddati cheklanganmi?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yo'q, bir marta sotib olgandan so'ng, kurslarimizdan cheksiz foydalanishingiz mumkin. Kurs materiallariga umrbod kirish huquqiga ega bo'lasiz.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Trading o'rganish uchun qanday bilim kerak?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Bizning kurslarimiz har qanday darajadagi o'quvchilar uchun mo'ljallangan. Boshlang'ich kurslarda hech qanday oldindan tajriba talab qilinmaydi. Asosiy matematika va kompyuter ko'nikmalari etarli.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Kursni tugatgandan so'ng qanday yordam olaman?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Barcha kurslarimiz bitiruvchilari bizning maxsus telegram guruhimizga qo'shilishadi. Bu erda siz o'qituvchilardan qo'shimcha savollar va maslahatlar olishingiz, boshqa treyderlarga qo'shilishingiz mumkin.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    To'lovni qanday amalga oshirish mumkin?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Kurslarimizga to'lovni Visa, Mastercard, Click, Payme orqali amalga oshirishingiz yoki bank o'tkazmalari orqali to'lashingiz mumkin. Qo'shimcha ma'lumot uchun bizga murojaat qiling.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">Bizning jamoaga qo'shiling</h2>
+            <p class="lead mb-4">Professional trading ko'nikmalarini o'rganing va moliyaviy erkinlikka erishing</p>
+            <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Bog'lanish</a>
+        </div>
+    </section>
+{% endblock %}

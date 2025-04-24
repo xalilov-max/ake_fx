@@ -1,0 +1,184 @@
+{% empty %}
+                    <div class="col-12 text-center">
+                        <p>Hozircha kurslar mavjud emas</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Trading Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="{% static 'images/trading-concept.jpg' %}" alt="Trading Concept" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2>Nima uchun Trading?</h2>
+                    <p class="lead">Trading orqali moliyaviy erkinlikka erishish imkoniyati</p>
+                    <p>Trading - bu moliyaviy bozorlardagi instrumentlarni sotib olish va sotish orqali daromad topishga qaratilgan faoliyat. AKE.FX Trading Academy bilan siz:</p>
+                    
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Professional trading bilimlarini o'zlashtirasiz</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Riskni to'g'ri boshqarishni o'rganasiz</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Moliyaviy bozorlar haqida chuqur tushunchaga ega bo'lasiz</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> O'z kapitalingizni ko'paytirishning samarali usullarini o'zlashtirasiz</li>
+                    </ul>
+                    
+                    <a href="{% url 'about' %}" class="btn btn-primary mt-3">Ko'proq ma'lumot</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>O'quvchilarimiz fikrlari</h2>
+                <p class="lead">Muvaffaqiyatli o'quvchilarimizning fikrlari</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="testimonial-text">
+                            "Shokh.AKE ning trading kurslari menga moliyaviy bozorlarda ishonch bilan harakat qilishni o'rgatdi. Uning strategiyalari tufayli men muntazam daromadga erishyapman."
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="{% static 'images/testimonial-1.jpg' %}" alt="Testimonial Author" class="testimonial-author-img">
+                            <div>
+                                <h6 class="mb-0">Alisher Toshmatov</h6>
+                                <small class="text-muted">Kurs bitiruvchisi</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="testimonial-text">
+                            "Trading o'rganish haqida ko'p o'ylagandim, lekin qayerdan boshlashni bilmas edim. AKE.FX menga aniq yo'nalish berdi va endi men mustaqil trader sifatida faoliyat yuritmoqdaman."
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="{% static 'images/testimonial-2.jpg' %}" alt="Testimonial Author" class="testimonial-author-img">
+                            <div>
+                                <h6 class="mb-0">Gulnora Karimova</h6>
+                                <small class="text-muted">Professional trader</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="testimonial-text">
+                            "AKE.FX kurslari juda tushunarli va amaliy. Men bir necha oydan so'ng o'z sarmoyamni ikki baravardan ko'proq ko'paytira oldim. Bu platformani barcha trading bilan qiziquvchilarga tavsiya qilaman."
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="{% static 'images/testimonial-3.jpg' %}" alt="Testimonial Author" class="testimonial-author-img">
+                            <div>
+                                <h6 class="mb-0">Botir Hakimov</h6>
+                                <small class="text-muted">Amateur trader</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">Trading dunyosiga qadam qo'ying</h2>
+            <p class="lead mb-4">Professionallar bilan birga o'rganing va moliyaviy erkinlikka erishing</p>
+            <a href="{% url 'account_signup' %}" class="btn btn-light btn-lg">Hozir boshlang</a>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2>Eng so'nggi maqolalar</h2>
+                    <p class="lead mb-0">Trading haqida foydali ma'lumotlar</p>
+                </div>
+                <a href="{% url 'post_list' %}" class="btn btn-outline-primary">Barcha maqolalar</a>
+            </div>
+            
+            <div class="row g-4">
+                {% for post in latest_posts %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card blog-card h-100">
+                            <img src="{{ post.image.url }}" class="card-img-top blog-image" alt="{{ post.title }}">
+                            <div class="card-body">
+                                <div class="blog-meta">
+                                    <span><i class="far fa-calendar-alt me-1"></i> {{ post.created_at|date:"d.m.Y" }}</span>
+                                    <span><i class="far fa-user me-1"></i> {{ post.author.get_full_name }}</span>
+                                </div>
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <p class="card-text">{{ post.content|truncatechars:150 }}</p>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <a href="{% url 'post_detail' post.slug %}" class="btn btn-link p-0">Ko'proq o'qish <i class="fas fa-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 text-center">
+                        <p>Hozircha maqolalar mavjud emas</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Bizning hamkorlar</h2>
+                <p class="lead">Ishonchli hamkorlarimiz</p>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-6 col-md-3 text-center mb-4">
+                    <img src="{% static 'images/partner-1.png' %}" alt="Partner 1" class="img-fluid" style="max-height: 80px;">
+                </div>
+                <div class="col-6 col-md-3 text-center mb-4">
+                    <img src="{% static 'images/partner-2.png' %}" alt="Partner 2" class="img-fluid" style="max-height: 80px;">
+                </div>
+                <div class="col-6 col-md-3 text-center mb-4">
+                    <img src="{% static 'images/partner-3.png' %}" alt="Partner 3" class="img-fluid" style="max-height: 80px;">
+                </div>
+                <div class="col-6 col-md-3 text-center mb-4">
+                    <img src="{% static 'images/partner-4.png' %}" alt="Partner 4" class="img-fluid" style="max-height: 80px;">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
