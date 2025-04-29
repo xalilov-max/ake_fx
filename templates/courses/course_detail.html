@@ -1,0 +1,442 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course.title }} - Ake.fx Trading Akademiyasi{% endblock %}
+
+{% block content %}
+<!-- Kurs batafsil sahifa dizayni -->
+<section class="course-header py-5" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static 'img/trading-bg.jpg' %}') no-repeat center center; background-size: cover;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="badge bg-primary mb-3">{{ course.category.name }}</span>
+                <h1 class="text-white fw-bold display-5 mb-3">{{ course.title }}</h1>
+                <div class="d-flex align-items-center mb-4">
+                    <div class="me-4">
+                        <img src="{{ course.instructor.profile_picture.url }}" class="rounded-circle" width="50" height="50" alt="{{ course.instructor.name }}">
+                        <span class="text-white ms-2">{{ course.instructor.name }}</span>
+                    </div>
+                    <div class="course-stats d-flex text-white">
+                        <div class="me-4"><i class="bi bi-calendar-event me-2"></i>{{ course.duration }}</div>
+                        <div class="me-4"><i class="bi bi-people-fill me-2"></i>{{ course.students_count }} o'quvchi</div>
+                        <div><i class="bi bi-star-fill text-warning me-2"></i>{{ course.rating|floatformat:1 }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card shadow course-card">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold text-primary mb-0">{{ course.price|floatformat:0 }} so'm</h3>
+                            {% if course.discount_price %}
+                            <p class="text-muted"><del>{{ course.original_price|floatformat:0 }} so'm</del> <span class="text-success">{{ course.discount_percentage }}% chegirma</span></p>
+                            {% endif %}
+                        </div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>{{ course.video_count }} video darslar</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>{{ course.duration }} davomiyligi</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Cheksiz kirish</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Trading strategiyalar</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Shaxsiy konsultatsiya</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Sertifikat</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'course_enrollment' course.slug %}" class="btn btn-primary btn-lg">Kursni sotib olish</a>
+                            {% if course.has_trial %}
+                            <a href="{% url 'course_trial' course.slug %}" class="btn btn-outline-primary">Bepul darsni ko'rish</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kurs haqida ma'lumot -->
+<section class="course-content py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Tabs -->
+                <ul class="nav nav-tabs mb-4" id="courseTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Kurs haqida</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false">Darslar</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor" type="button" role="tab" aria-controls="instructor" aria-selected="false">O'qituvchi</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Sharhlar</button>
+                    </li>
+                </ul>
+                
+                <!-- Tab content -->
+                <div class="tab-content" id="courseTabContent">
+                    <!-- Overview -->
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                        <h3 class="mb-4">Kurs haqida</h3>
+                        <div class="course-description mb-4">
+                            {{ course.description|safe }}
+                        </div>
+                        
+                        <h4 class="mb-3">Nimalarni o'rganasiz</h4>
+                        <div class="row mb-4">
+                            {% for outcome in course.learning_outcomes %}
+                            <div class="col-md-6 mb-2">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                    <span>{{ outcome }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <h4 class="mb-3">Talablar</h4>
+                        <ul class="list-unstyled mb-4">
+                            {% for requirement in course.requirements %}
+                            <li class="mb-2">
+                                <i class="bi bi-dot me-2"></i>{{ requirement }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <h4 class="mb-3">Kimlar uchun</h4>
+                        <ul class="list-unstyled mb-4">
+                            {% for target in course.target_audience %}
+                            <li class="mb-2">
+                                <i class="bi bi-people-fill me-2"></i>{{ target }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <!-- Curriculum -->
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                        <h3 class="mb-4">Kurs dasturi</h3>
+                        <div class="accordion" id="courseModules">
+                            {% for module in course.modules %}
+                            <div class="accordion-item mb-3 border">
+                                <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                                    <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
+                                        <div class="d-flex justify-content-between w-100 me-3">
+                                            <span>{{ module.title }}</span>
+                                            <span class="text-muted small">{{ module.lessons_count }} dars • {{ module.duration }}</span>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#courseModules">
+                                    <div class="accordion-body">
+                                        <ul class="list-group list-group-flush">
+                                            {% for lesson in module.lessons %}
+                                            <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-bottom">
+                                                <div>
+                                                    <i class="bi {% if lesson.type == 'video' %}bi-play-circle{% elif lesson.type == 'quiz' %}bi-question-circle{% else %}bi-file-text{% endif %} me-2"></i>
+                                                    <span>{{ lesson.title }}</span>
+                                                    {% if lesson.is_free %}
+                                                    <span class="badge bg-success ms-2">Bepul</span>
+                                                    {% endif %}
+                                                </div>
+                                                <span class="text-muted small">{{ lesson.duration }}</span>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- Instructor -->
+                    <div class="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
+                        <h3 class="mb-4">O'qituvchi haqida</h3>
+                        <div class="instructor-profile d-flex mb-4">
+                            <div class="instructor-avatar me-4">
+                                <img src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.name }}" class="rounded-circle" width="120" height="120">
+                            </div>
+                            <div class="instructor-info">
+                                <h4 class="mb-1">{{ course.instructor.name }}</h4>
+                                <p class="text-muted mb-2">{{ course.instructor.title }}</p>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="me-3"><i class="bi bi-star-fill text-warning me-1"></i>{{ course.instructor.rating|floatformat:1 }} reyting</div>
+                                    <div class="me-3"><i class="bi bi-mortarboard-fill me-1"></i>{{ course.instructor.students_count }} o'quvchi</div>
+                                    <div><i class="bi bi-play-circle me-1"></i>{{ course.instructor.courses_count }} kurs</div>
+                                </div>
+                                <div class="social-links mb-3">
+                                    {% if course.instructor.instagram %}
+                                    <a href="{{ course.instructor.instagram }}" class="me-2" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    {% endif %}
+                                    {% if course.instructor.telegram %}
+                                    <a href="{{ course.instructor.telegram }}" class="me-2" target="_blank"><i class="bi bi-telegram"></i></a>
+                                    {% endif %}
+                                    {% if course.instructor.facebook %}
+                                    <a href="{{ course.instructor.facebook }}" class="me-2" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    {% endif %}
+                                    {% if course.instructor.youtube %}
+                                    <a href="{{ course.instructor.youtube }}" target="_blank"><i class="bi bi-youtube"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="instructor-bio mb-4">
+                            {{ course.instructor.bio|safe }}
+                        </div>
+                    </div>
+                    
+                    <!-- Reviews -->
+                    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="mb-0">O'quvchilar sharhlari</h3>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Sharh qoldirish</button>
+                        </div>
+                        
+                        <div class="reviews-summary mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-4 text-center">
+                                    <h1 class="display-4 fw-bold text-primary">{{ course.rating|floatformat:1 }}</h1>
+                                    <div class="stars mb-2">
+                                        {% for i in "12345" %}
+                                        <i class="bi bi-star-fill {% if forloop.counter <= course.rating %}text-warning{% endif %}"></i>
+                                        {% endfor %}
+                                    </div>
+                                    <p class="text-muted">{{ course.reviews_count }} sharh</p>
+                                </div>
+                                <div class="col-md-8">
+                                    {% for i in "54321" %}
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="me-2">{{ forloop.counter0|add:1 }} <i class="bi bi-star-fill text-warning"></i></div>
+                                        <div class="progress flex-grow-1" style="height: 8px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{ course.ratings_distribution|get_item:forloop.counter0|add:1 }}%;" aria-valuenow="{{ course.ratings_distribution|get_item:forloop.counter0|add:1 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="ms-2 text-muted small">{{ course.ratings_distribution|get_item:forloop.counter0|add:1 }}%</div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="reviews-list">
+                            {% for review in course.reviews %}
+                            <div class="review-item border-bottom pb-4 mb-4">
+                                <div class="d-flex mb-3">
+                                    <img src="{{ review.user.avatar.url|default:'static/img/default-avatar.png' }}" alt="{{ review.user.full_name }}" class="rounded-circle me-3" width="50" height="50">
+                                    <div>
+                                        <h5 class="mb-1">{{ review.user.full_name }}</h5>
+                                        <div class="d-flex align-items-center">
+                                            <div class="stars me-3">
+                                                {% for i in "12345" %}
+                                                <i class="bi bi-star-fill {% if forloop.counter <= review.rating %}text-warning{% endif %}"></i>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="text-muted small">{{ review.created_at|date:"d.m.Y" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-0">{{ review.comment }}</p>
+                            </div>
+                            {% empty %}
+                            <div class="text-center py-5">
+                                <i class="bi bi-chat-square-text display-4 text-muted mb-3"></i>
+                                <h5>Hali sharhlar yo'q</h5>
+                                <p>Birinchi bo'lib sharh qoldiring!</p>
+                            </div>
+                            {% endfor %}
+                            
+                            {% if course.reviews_count > 5 %}
+                            <div class="text-center mt-4">
+                                <a href="#" class="btn btn-outline-primary">Ko'proq sharhlar</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <!-- Related courses -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0">O'xshash kurslar</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            {% for related_course in related_courses %}
+                            <li class="list-group-item p-3">
+                                <div class="d-flex">
+                                    <img src="{{ related_course.thumbnail.url }}" alt="{{ related_course.title }}" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                    <div>
+                                        <h6 class="mb-1"><a href="{% url 'course_detail' related_course.slug %}" class="text-decoration-none text-dark">{{ related_course.title }}</a></h6>
+                                        <div class="d-flex align-items-center">
+                                            <div class="stars me-2">
+                                                {% for i in "12345" %}
+                                                <i class="bi bi-star-fill {% if forloop.counter <= related_course.rating %}text-warning{% else %}text-muted{% endif %} small"></i>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="small text-muted">({{ related_course.reviews_count }})</span>
+                                        </div>
+                                        <div class="mt-1">
+                                            <span class="fw-bold text-primary">{{ related_course.price|floatformat:0 }} so'm</span>
+                                            {% if related_course.discount_price %}
+                                            <span class="text-muted ms-2"><del>{{ related_course.original_price|floatformat:0 }} so'm</del></span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <a href="{% url 'courses' %}" class="text-decoration-none">Barcha kurslarni ko'rish</a>
+                    </div>
+                </div>
+                
+                <!-- Certificate -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="{% static 'img/certificate.png' %}" alt="Sertifikat" class="img-fluid mb-3" style="max-width: 200px;">
+                            <h5>Sertifikat bilan taqdirlanadi</h5>
+                            <p class="text-muted mb-0">Kursni muvaffaqiyatli yakunlaganingizdan so'ng, siz Ake.fx trading akademiyasi tomonidan berilgan rasmiy sertifikatga ega bo'lasiz.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Support -->
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Qo'llab-quvvatlash</h5>
+                        <p>Savollaringiz bormi? Bizga bog'laning:</p>
+                        <div class="d-grid gap-2">
+                            <a href="https://t.me/ake_fx" class="btn btn-outline-primary"><i class="bi bi-telegram me-2"></i>Telegram</a>
+                            <a href="tel:+998901234567" class="btn btn-outline-primary"><i class="bi bi-telephone me-2"></i>+998 90 123 45 67</a>
+                            <a href="mailto:info@ake.fx" class="btn btn-outline-primary"><i class="bi bi-envelope me-2"></i>info@ake.fx</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">Sharh qoldirish</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'add_review' course.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3 text-center">
+                        <p>Kursni baholang:</p>
+                        <div class="rating-stars mb-3">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5"><i class="bi bi-star-fill"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4"><i class="bi bi-star-fill"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3"><i class="bi bi-star-fill"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2"><i class="bi bi-star-fill"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1"><i class="bi bi-star-fill"></i></label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reviewComment" class="form-label">Sharh matni</label>
+                        <textarea class="form-control" id="reviewComment" name="comment" rows="4" required></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                        <button type="submit" class="btn btn-primary">Yuborish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related CSS -->
+<style>
+    /* Rating Stars */
+    .rating-stars {
+        display: inline-flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
+    
+    .rating-stars input {
+        display: none;
+    }
+    
+    .rating-stars label {
+        cursor: pointer;
+        font-size: 1.8rem;
+        color: #ccc;
+        margin: 0 2px;
+    }
+    
+    .rating-stars input:checked ~ label,
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+        color: #ffc107;
+    }
+    
+    /* Course card */
+    .course-card {
+        position: sticky;
+        top: 20px;
+    }
+    
+    /* Tab navigation */
+    .nav-tabs .nav-link {
+        color: #6c757d;
+        font-weight: 500;
+    }
+    
+    .nav-tabs .nav-link.active {
+        color: #0d6efd;
+        font-weight: 600;
+    }
+    
+    /* Instructor section */
+    .social-links a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #f8f9fa;
+        color: #0d6efd;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    
+    .social-links a:hover {
+        background-color: #0d6efd;
+        color: #fff;
+    }
+</style>
+
+<!-- Bootstrap JS, needed for accordion and tabs functionality -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize ratings in the review modal
+        const ratingLabels = document.querySelectorAll('.rating-stars label');
+        ratingLabels.forEach(label => {
+            label.addEventListener('click', function() {
+                ratingLabels.forEach(lbl => lbl.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kurslar katalogi - AKE.FX{% endblock %}
+
+{% block content %}
+    <!-- Courses Header -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1>Trading kurslari</h1>
+                    <p class="lead">Professional trader Shokh.AKE tomonidan ishlab chiqilgan kurslar</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-dark">Kurs qidirish</h5>
+                            <div class="input-group">
+                                <input type="text" id="course-search" class="form-control" placeholder="Kurs nomini kiriting...">
+                                <button class="btn btn-dark" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Filters -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h5 class="mb-0">Kategoriyalar:</h5>
+                </div>
+                <div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-primary course-filter-btn active" data-filter="all">Barchasi</button>
+                        {% for category in categories %}
+                            <button type="button" class="btn btn-outline-primary course-filter-btn" data-filter="category-{{ category.id }}">{{ category.name }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="mt-3 mt-md-0">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-dark course-filter-btn" data-filter="beginner">Boshlang'ich</button>
+                        <button type="button" class="btn btn-outline-dark course-filter-btn" data-filter="intermediate">O'rta</button>
+                        <button type="button" class="btn btn-outline-dark course-filter-btn" data-filter="advanced">Yuqori</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                {% for course in courses %}
+                    <div class="col-lg-4 col-md-6 course-card-wrapper category-{{ course.category.id }} {{ course.level }}">
+                        <div class="card course-card h-100">
+                            <img src="{{ course.image.url }}" class="card-img-top course-image" alt="{{ course.title }}">
+                            <div class="course-badge">
+                                {% if course.discount_price %}
+                                    <span class="badge bg-danger">{{ course.get_discount_percentage }}% chegirma</span>
+                                {% endif %}
+                            </div>
+                            <div class="card-body">
+                                <span class="course-level level-{{ course.level }}">{{ course.get_level_display }}</span>
+                                <h5 class="card-title">{{ course.title }}</h5>
+                                <p class="card-text">{{ course.description|truncatechars:100 }}</p>
+                                
+                                <div class="mt-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-book-open text-primary me-2"></i>
+                                        <span>{{ course.modules.count }} modul</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-clock text-primary me-2"></i>
+                                        <span>{{ course.total_duration }} soat</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div>
+                                        {% if course.discount_price %}
+                                            <span class="course-price-discount">{{ course.price }} UZS</span>
+                                            <span class="course-price">{{ course.discount_price }} UZS</span>
+                                        {% else %}
+                                            <span class="course-price">{{ course.price }} UZS</span>
+                                        {% endif %}
+                                    </div>
+                                    <a href="{% url 'course_detail' course.slug %}" class="btn btn-sm btn-primary">Batafsil</a>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.get_full_name }}" class="rounded-circle me-2" width="30" height="30">
+                                    <small class="text-muted">{{ course.instructor.get_full_name }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            Hozircha kurslar mavjud emas. Tez orada yangi kurslar qo'shiladi.
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
